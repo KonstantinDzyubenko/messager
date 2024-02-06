@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Messager</title>
+</head>
+<body>
+<div>Current user:</div>
+<div th:text="${session.userName}"></div>
+<table frame="border" border="5">
+  <tr align="center">
+    <th>id</th>
+    <th>sender</th>
+    <th>message text</th>
+  </tr>
+  <tr align="center" th:each="message: ${session.messages}">
+    <td th:text="${message.id}"/>
+    <td th:text="${message.sender}"/>
+    <td th:text="${message.text}"/>
+  </tr>
+</table>
+<form th:action="@{/addMessage}" method="post">
+  <div><label> Input message: <input type="text" name="text"/></label></div>
+  <div><input type="submit" value="Add new message"></div>
+</form>
+<form th:action="@{/filterMessages}" method="post">
+  <div><label> Filter by sender: <input type="text" name="sender"/></label></div>
+  <div><input type="submit" value="Filter"></div>
+</form>
+<!--<form th:action="@{/showAllMessages}" method="post">-->
+<!--  <div><input type="submit" value="Show all messages"></div>-->
+<!--</form>-->
+</body>
+</html>
